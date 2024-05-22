@@ -13,7 +13,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const getPost = await axios.get(`${BASE_URL}/getpost`);
+      const getPost = await axios.get(`${BASE_URL}/api/getpost`);
       // console.log(getPost);
       setPost(getPost.data.data);
     } catch (error) {
@@ -27,7 +27,7 @@ function App() {
         description: description,
         userId: "101",
       };
-      const create = await axios.post(`${BASE_URL}/createpost`, obj);
+      const create = await axios.post(`${BASE_URL}/api/createpost`, obj);
       // console.log("create", create);
       setTitleValue("");
       setDescription("");
@@ -45,7 +45,7 @@ function App() {
         title: titleValuePrompt,
         description: descriptionValue,
       };
-      const edit = await axios.put(`${BASE_URL}/updatepost/${id}`, obj); // Pass obj as the second argument
+      const edit = await axios.put(`${BASE_URL}/api/updatepost/${id}`, obj); // Pass obj as the second argument
       // console.log("edit", edit);
       fetchData();
     } catch (error) {
@@ -56,7 +56,7 @@ function App() {
   const deleteHandler = async (id) => {
     try {
       // console.log("Deleting post with ID:", id);
-      await axios.delete(`${BASE_URL}/deletepost/${id}`);
+      await axios.delete(`${BASE_URL}/api/deletepost/${id}`);
       // console.log("Post deleted successfully.");
       fetchData();
     } catch (error) {
